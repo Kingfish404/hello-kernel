@@ -1,4 +1,4 @@
-obj-m := hello.o
+obj-m := ioctl.o
 
 all :
 	$(MAKE) -C /lib/modules/$(shell uname -r)/build CC=$(CC) M=$(PWD) modules

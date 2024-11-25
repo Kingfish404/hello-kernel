@@ -3,7 +3,10 @@
 
 MODULE_LICENSE("GPL");
 
-static int year = 2022;
+static int year = 2024;
+
+int hello_init(void);
+void hello_exit(void);
 
 int hello_init(void)
 {

@@ -1,20 +1,33 @@
-# Hello Kernel Driver
+# Hello Kernel Module
 
-2022年最简规范的Linux Kernel Driver构建样例。
+The simplest kernel module following the specification of the Linux Kernel documentation.
 
 ## Use
 
 ```shell
-make all        # 编译驱动
-make insmod     # 插入驱动
-make rmmod      # 移除驱动
-make kern_log   # 查看内核日志
+sudo apt-get install linux-headers-$(uname -r)  # install kernel headers for debian based system
+
+sudo yum install kernel-headers-`uname -r`      # install kernel headers for centos based system
+sudo yum install kernel-devel-$(uname -r)       # install kernel headers for centos based system
+
+make                    # compile
+sudo insmod ./hello.ko  # install module
+sudo rmmod hello        # remove module
+tail /var/log/kern.log  # check log
+# or
+dmesg | tail            # check log
 # [DATE] [COMPUTER_NAME] kernel: [90704.319340] Hello kernel, it's [year]!
 # [DATE] [COMPUTER_NAME] kernel: [90724.191131] Bye, kernel!
+
+make clean
 ```
+
+## Submodule
+
+- [ioctl](./ioctl) - ioctl system call: for communication between user space and kernel space
 
 ## Reference
 
-- [Ubuntu12.10 内核源码外编译 linux模块--编译驱动模块的基本方法](https://www.cnblogs.com/QuLory/archive/2012/10/23/2736339.html)
-- [Linux Kernel Makefiles — The Linux Kernel  documentation](https://docs.kernel.org/kbuild/makefiles.html)
-- [Linux 内核驱动接口 — The Linux Kernel  documentation](https://docs.kernel.org/translations/zh_CN/process/stable-api-nonsense.html)
+- [Linux Kernel Makefiles — The Linux Kernel documentation](https://docs.kernel.org/kbuild/makefiles.html)
+- [The Linux Kernel Module Programming Guide](https://sysprog21.github.io/lkmpg/)
+- [misc0110/PTEditor: A small library to modify all page-table levels of all processes from user space for x86_64 and ARMv8.](https://github.com/misc0110/PTEditor)
